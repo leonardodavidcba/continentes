@@ -15,7 +15,7 @@ public class Continente
     private String observacion;
     private int codigo;
 
-    
+    // algo
     
     
     public String getNombre() {
