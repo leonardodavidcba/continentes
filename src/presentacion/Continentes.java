@@ -5,8 +5,15 @@
  */
 package presentacion;
 
+import java.awt.Color;
 import persistenciaDAO.ContinentesDAO;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import modelo.Archivo_Class;
 import modelo.Continente;
 import negocioBO.*;
 /**
@@ -17,6 +24,7 @@ public class Continentes extends javax.swing.JFrame
 {
 
     
+    private Archivo_Class[] lista_adjunto = null;   //#Lista de adjuntos
     
     ContinentesDAO list_model = new ContinentesDAO();
   
@@ -25,6 +33,7 @@ public class Continentes extends javax.swing.JFrame
     {
         initComponents();
         lista.setModel(list_model);        // aca inicializo la lista que cree visualmente, lista es el nombre de la variable
+        
     }
 
     /**
@@ -58,6 +67,8 @@ public class Continentes extends javax.swing.JFrame
         informacionCodigo = new javax.swing.JLabel();
         informacionObs = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
+        eniarMail = new javax.swing.JButton();
+        lbl_estado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,14 +127,17 @@ public class Continentes extends javax.swing.JFrame
             }
         });
 
+        eniarMail.setText("MAIL");
+        eniarMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eniarMailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(283, 283, 283))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -156,16 +170,21 @@ public class Continentes extends javax.swing.JFrame
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(informacionObs, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(informacionNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(informacionCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(informacionObs, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelar)
-                        .addGap(25, 25, 25))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(informacionCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(informacionNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(eniarMail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar))
+                    .addComponent(lbl_estado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(283, 283, 283))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,20 +220,21 @@ public class Continentes extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(informacionCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(btnCancelar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(informacionObs, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(24, 24, 24))
+                            .addComponent(jLabel8)
+                            .addComponent(informacionObs, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar)
+                            .addComponent(eniarMail))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -298,6 +318,71 @@ public class Continentes extends javax.swing.JFrame
         
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void eniarMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eniarMailActionPerformed
+     lbl_estado.setForeground(Color.black);
+        JTextField Jpassword = new JPasswordField();    //#Crea un elemento de contraseña
+        Object[] ob = {Jpassword};                      //#Obtiene la contraseña
+
+        List<String> destinatatios = Arrays.asList("leonardodavidcba@gmail.com");  //#Agrega los destinararios
+        List<String> CC = Arrays.asList("dejavaclases@gmail.com");               //#Agrega los destinatarios con COPIA
+        List<String> CCO = Arrays.asList("dejavaclases@gmail.com");             //#Agrega los destinatarios con COPIA OCULTA
+
+        destinatatios = destinatatios.get(0).length() > 0 ? destinatatios : null;   //#Si existen destinatarios dejarlo intacto
+                                                                                    //#de lo contrario dejarl la lista en nulo
+        CC = CC.get(0).length() > 0 ? CC : null;        //#Si existen destinatarios con copia dejarlo intacto de lo contrario
+                                                        //dejar la lista nula
+        CCO = CCO.get(0).length() > 0 ? CCO : null;     //#Si existen destinatario con copia oculta dejarlo intacto de lo
+                                                        //#contrario dejar la lista nula
+
+        List<List<String>> contactos = new ArrayList<List<String>>();//#Dejar todos los destinatarios en una sola lista
+        contactos.add(destinatatios);   
+        contactos.add(CC);
+        contactos.add(CCO);
+
+        if (contactos.get(0) != null) 
+        {                                                      //#Si existe al menos un destinatario
+            int result = JOptionPane.showConfirmDialog(null,
+                    ob, "Ingrese su contraseña",
+                    JOptionPane.OK_CANCEL_OPTION);             //#Agre interfaz para contraseña
+
+            if (result == JOptionPane.OK_OPTION)
+            {  //#Si se ingreso una contraseña
+                lbl_estado.setText("Estado: Enviando... ");    //#Cambia estado
+                
+               
+                EnviaEmail email = new EnviaEmail();        //#Instancea la clase EnviaEmail
+                email.origen = "dejavaclases@gmail.com";  //#Setea el origen del correo
+                email.psswd = Jpassword.getText().trim();   //#Setea la contraseña del correo
+                email.destino = contactos;                  //#Añade la lista de destinatarios, CC y CCO
+                email.asunto = "algo"; //#Setea el asunto del mensaje
+                email.cuerpo = "das";//#Setea el contenido textual del mensaje
+                email.adjunto = lista_adjunto;              //#Setea lista de adjuntos
+                
+                
+                if (email.enviar())
+                {                                           //#Si se envio correctamente el correo
+                    lbl_estado.setForeground(Color.green);  //#Cambiar color estado
+                    lbl_estado.setText("Estado: Enviado."); //#Cambia el estado
+                } else
+                {                                           //#De lo contrario      
+                    lbl_estado.setForeground(Color.red);    //#Cambia color a rojo
+                    lbl_estado.setText("Estado: Ocurrio un error al enviar.");//#Cambia estado
+                }
+            }
+        } else
+        {                                                   //#Si no existen destinatarios
+            lbl_estado.setForeground(Color.black);
+                                 
+                              //#Muestra mensaje de advertencia
+            JOptionPane.showMessageDialog(null, "NO existen destinatarios.");
+        }   
+                
+                
+     //   System.out.println("estado: "+email.enviar());
+        
+        
+    }//GEN-LAST:event_eniarMailActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -355,6 +440,7 @@ public class Continentes extends javax.swing.JFrame
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JTextField codigo;
+    private javax.swing.JButton eniarMail;
     private javax.swing.JLabel informacionCodigo;
     private javax.swing.JLabel informacionNombre;
     private javax.swing.JLabel informacionObs;
@@ -369,6 +455,7 @@ public class Continentes extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbl_estado;
     private javax.swing.JList<String> lista;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextArea observacion;
