@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import util.EnviaEmail;
 import java.awt.Color;
 import persistenciaDAO.ContinentesDAO;
 import java.util.ArrayList;

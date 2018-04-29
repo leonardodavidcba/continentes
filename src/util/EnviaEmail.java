@@ -1,4 +1,4 @@
-package presentacion;
+package util;
 
 import modelo.Archivo_Class;
 import java.util.List;
@@ -11,12 +11,12 @@ import javax.mail.internet.*;
 public class EnviaEmail 
 {
 
-     String origen;
-     String psswd;
-     List<List<String>> destino;
-     Archivo_Class[] adjunto;
-     String asunto;
-     String cuerpo;
+     public String origen;
+     public String psswd;
+     public List<List<String>> destino;
+     public Archivo_Class[] adjunto;
+     public String asunto;
+     public String cuerpo;
 
     public EnviaEmail() 
     {
@@ -89,7 +89,7 @@ public class EnviaEmail
                             ;                                           //#agrega el destinatario 
             }
             
-            
+          /*    
             //#INICIO AGREGAR MULTIPLES CC
             if (this.destino.get(1) != null)
             {                                                          //#Si existen destinatarios con copia
@@ -102,7 +102,7 @@ public class EnviaEmail
                 } 
             } 
             //#FIN AGREGA MULTIPLES CC
-            
+          
             //#INICIO AGREGAR MULTIPLES C0
             if (this.destino.get(2) != null)
             {                                                        //Si existen adestinatarios con copia oculta
@@ -115,7 +115,7 @@ public class EnviaEmail
                 } 
             } 
             //#FIN AGREGAR MULTIPLES CO
-        
+        */
             BodyPart texto = new MimeBodyPart();            //#Crea el cuerpo del mensaje
             texto.setText(this.cuerpo);                     //#Setea el mensaje a la parte del mensaje
             msg.setSubject(this.asunto);                    //#Setea asunto
